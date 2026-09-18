@@ -1,6 +1,3 @@
-      - name: Debug OIDC Claims
-        uses: github/actions-oidc-debugger@main
-
 name: GitHub Agent - AWS
 
 on:
@@ -51,6 +48,9 @@ jobs:
       - name: Checkout
         if: inputs.operation == 'deploy'
         uses: actions/checkout@v7
+
+      - name: Debug OIDC Claims
+        uses: github/actions-oidc-debugger@main
 
       - name: Configure AWS credentials with OIDC
         uses: aws-actions/configure-aws-credentials@v6
