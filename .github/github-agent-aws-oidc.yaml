@@ -4,12 +4,6 @@ Parameters:
   GitHubOwner:
     Type: String
     Default: shubhammore566
-  GitHubRepo:
-    Type: String
-    Default: BSNL
-  GitHubBranch:
-    Type: String
-    Default: main
 Resources:
   GitHubActionsOIDCProvider:
     Type: AWS::IAM::OIDCProvider
@@ -33,7 +27,7 @@ Resources:
               StringEquals:
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com
               StringLike:
-                token.actions.githubusercontent.com:sub: !Sub 'repo:${GitHubOwner}/${GitHubRepo}:ref:refs/heads/${GitHubBranch}'
+                token.actions.githubusercontent.com:sub: !Sub 'repo:${GitHubOwner}/*:ref:refs/heads/*'
       Policies:
         - PolicyName: GitHubAgentEC2Deployment
           PolicyDocument:
