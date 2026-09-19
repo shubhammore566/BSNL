@@ -49,15 +49,6 @@ jobs:
         if: inputs.operation == 'deploy'
         uses: actions/checkout@v7
 
-      - name: Debug OIDC token claims
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const id_token = await core.getIDToken('sts.amazonaws.com');
-            const payload = JSON.parse(Buffer.from(id_token.split('.')[1], 'base64').toString());
-            console.log('aud:', payload.aud);
-            console.log('sub:', payload.sub);
-
       - name: Configure AWS credentials with OIDC
         uses: aws-actions/configure-aws-credentials@v6
         with:
